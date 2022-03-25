@@ -24,7 +24,7 @@ public class ResizingArrayQueueOfStrings {
 		n--;
 		if (head == q.length) 
 			head = 0;
-		if (n == (q.length / 4))
+		if (n > 0 && n == (q.length / 4))
 			resize(n / 2);
 		
 		return item;

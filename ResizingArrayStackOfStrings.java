@@ -22,7 +22,12 @@ public class ResizingArrayStackOfStrings {
 		s[N] = null;
 		// If the array is one quarter full, we halve it
 		// N > 0 seems unnecessary
-		if (N > 0 && N == s.length / 4)
+		// Actually, the condition is necessary, otherwise if there is only one item
+		// in the array, and then we pop it, we will resize to an array of size 0.
+		// Then, if we try to push an item, we will get an ArrayIndexOutOfBoundsException,
+		// since we would be trying to put an item at index 0, however an array of size 0
+		// does not have such an index.
+		if (N == s.length / 4 && N > 0)
 			resize(s.length / 2);
 		return item;
 	}
